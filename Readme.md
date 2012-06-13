@@ -1,20 +1,24 @@
-# Express Messages
+# Express Messages for Twitter Bootstrap
       
-The _express-messages_ module provides flash notification rendering. To use simply assign it to a dynamic helper:
+The _express-bootstrap-messages_ module provides flash notification rendering. To use simply assign it to a dynamic helper:
 
     app.dynamicHelpers({ messages: require('express-messages') });
 
 ## Installation
 
-    $ npm install express-messages
+    $ npm install express-bootstrap-messages
 
 ## Usage
 
 On the server, add messages like this:
 
-    req.flash("info", "herp derp %s", something)
+    req.flash("Error", {"header": "Oh Snap!", "text": "You accidentally the whole thing!"});
 
 Then in a view you may output the notifications based on your templating engine:
+
+### [Razor](https://github.com/davidmurdoch/razorjs)
+
+    @Html.Raw(messages())
 
 ### [EJS](https://github.com/visionmedia/ejs)
 
@@ -26,14 +30,12 @@ Then in a view you may output the notifications based on your templating engine:
 
 Which outputs HTML as shown below:
 
-    <div id="messages">
-      <ul class="info">
-        <li>Email queued</li>
-        <li>Email sent</li>
-      </ul>
-      <ul class="error">
-        <li>Email delivery failed</li>
-      </ul>
+    <div class="alerts">
+      <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <h4 class="alert-heading">Oh Snap!</h4>
+        You accidentally the whole thing!
+      </div>
     </div>
 
 ## Running Tests
@@ -51,6 +53,7 @@ Then run the tests:
 (The MIT License)
 
 Copyright (c) 2010 TJ Holowaychuk &lt;tj@vision-media.ca&gt;
+Copyright (c) 2012 David Murdoch &lt;bootstrap-messages@davidmurdoch.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
