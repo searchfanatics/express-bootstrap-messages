@@ -14,16 +14,13 @@ http.IncomingMessage.prototype.flash = function(type, msg){
 
   if (type && msg) {
     if( msg.text ){
-      var old = oldFlash.call(this)[type]
-        , oldmsg = old.pop()
-        , heading = msg.heading
-        , text = msg.text;
-        old.push(msg);
-      }
-      return old;
+      var arr = this.session.flash[type];
+      arr[arr.length-1] = msg;
     }
     return old;
-  };
+  }
+  return old;
+};
 
 module.exports = function(req, res){
 
@@ -42,11 +39,11 @@ module.exports = function(req, res){
           var msg = msgs[j]
             , heading = msg.heading
             , text = heading ? (msg.text || "") : msg;
-          buf.push('  <div class="alert alert-' + type + (heading ? ' alert-block' : '') + '">');
-          if(heading){
-            buf.push('    <h4 class="alert-heading">' + heading + '</h4>');
-          }
+          buf.push('  <div class="alert alert-' + type + '">');
           buf.push('    <button type="button" class="close" data-dismiss="alert">×</button>');
+          if(heading){
+            buf.push('    <strong>' + heading + '</strong>');
+          }
           buf.push('    ' + text);
           buf.push('  </div>');
         }
