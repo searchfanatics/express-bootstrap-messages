@@ -12,7 +12,7 @@ The _express-bootstrap-messages_ module provides flash notification rendering. T
 
 On the server, add messages like this:
 
-    req.flash("Error", {"header": "Oh Snap!", "text": "You accidentally the whole thing!"});
+    req.flash("Error", {"heading": "Oh Snap!", "text": "You accidentally the whole thing!"});
 
 Then in a view you may output the notifications based on your templating engine:
 
