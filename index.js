@@ -16,7 +16,7 @@ http.IncomingMessage.prototype.flash = function(type, msg){
     if( msg.text ){
       var old = oldFlash.call(this)[type]
         , oldmsg = old.pop()
-        , header = msg.header
+        , heading = msg.heading
         , text = msg.text;
         old.push(msg);
       }
